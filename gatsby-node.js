@@ -1,10 +1,33 @@
 const axios = require("axios");
+const { createFilePath } = require("gatsby-source-filesystem");
 
-exports.createPages = async ({ actions: { createPage } }) => {
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
   // fetch Data - unstructurized data pulled from API
   // benefits: familiar way
   const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
   const posts = res.data;
+
+  const result = await graphql(`
+    query {
+      allMarkdownRemark {
+        nodes {
+          frontmatter {
+            slug
+          }
+        }
+      }
+    }
+  `);
+  const { nodes } = result.data.allMarkdownRemark;
+  nodes.forEach((node) => {
+    createPage({
+      path: node.frontmatter.slug,
+      component: require.resolve("./src/templates/blog.js"),
+      context: {
+        slug: node.frontmatter.slug,
+      },
+    });
+  });
 
   posts.forEach((post) => {
     createPage({
@@ -21,83 +44,55 @@ exports.createPages = async ({ actions: { createPage } }) => {
   });
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
-  const typeDefs = `
-    type PostContent {
-      title: String
-      text: String
-    }
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  const posts = res.data;
 
-    type PostJson {
-      id: ID
-      title: String
-      body: String!
-      wordCount: Int
-      isActive: Boolean
-      rating: Float
-      tags: [String!]
-      content: PostContent
-    }
-    input TitleFilter {
-      eq: String
-      in: String
-    }
-  `;
-
-  createTypes(typeDefs);
-};
-
-exports.createResolvers = ({ createResolvers }) => {
-  const resolvers = {
-    Query: {
-      allPost: {
-        type: ["PostJson"],
-        args: {
-          filter: `input PostFilterInput {title: TitleFilter}`,
-          limit: "Int",
-        },
-        resolve(source, { filter }, context, info) {
-          const { title } = filter || {};
-          const { eq } = title || {};
-          // console.log("filter", filter);
-          const posts = [
-            {
-              id: "1",
-              title: "hELLO  WORLD",
-              body: "Cutom text",
-              wordCount: 200,
-              isActive: true,
-              rating: 4.23,
-              tags: ["programming", "Dev", "React"],
-              content: {
-                text: "Content",
-                title: "Title Context",
-              },
-            },
-            {
-              id: "2",
-              title: "Yo mama",
-              body: "Not null",
-              wordCount: 300,
-              isActive: false,
-              rating: 2.3,
-              content: {
-                text: "Content",
-                title: "Title Context",
-              },
-            },
-          ];
-
-          if (eq) {
-            return posts.filter((post) => post.title === eq);
-          }
-
-          return posts;
-        },
+  posts.forEach((post) => {
+    const node = {
+      title: post.title,
+      body: post.body,
+      // Node ID must be globally unique
+      id: createNodeId(`Post-${post.id}`),
+      // id: `Post-${post.id}`,
+      // ID to the parent Node
+      parent: null,
+      // ID to the children Node
+      children: [],
+      // META DAta = internal fields are not ussualy interesting for teh consumers
+      internal: {
+        // globally unique node type
+        type: "Post",
+        // hash or Short Digital Summary
+        contentDigest: createContentDigest(post),
+        // content exposing raw content of this node
+        content: JSON.stringify(post),
       },
-    },
-  };
-
-  createResolvers(resolvers);
+    };
+    actions.createNode(node);
+  });
 };
+
+// SLUG creation
+// exports.onCreateNode = ({ node, getNode, actions }) => {
+//   // console.log(node.internal.type);
+//   if (node.internal.type === "MarkdownRemark") {
+//     const slug = createFilePath({
+//       node,
+//       getNode,
+//       // extracts the Name of Slug from /blogs/learn-program-js/
+//       basePath: "blogs",
+//     });
+//     // console.log(slug);
+
+//     actions.createNodeField({
+//       node,
+//       name: "slug",
+//       value: slug,
+//     });
+//   }
+// };
