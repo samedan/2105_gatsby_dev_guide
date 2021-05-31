@@ -1,8 +1,10 @@
 ---
-title: Learn Gatsby
+title: Learn Javascript Code
 date: "2021"
 subtitle: "Learning to fill CV"
 slug: learn-program-js
+author: Popescu Daniel
+rating: 4
 ---
 
 # h1 Heading 8-)
@@ -18,6 +20,19 @@ slug: learn-program-js
 ###### h6 Heading
 
 ## Horizontal Rules
+
+```
+Sample text here...
+```
+
+Syntax highlighting
+
+```js
+var foo = function (bar) {
+  return bar++;
+};
+console.log(foo(5));
+```
 
 ---
 

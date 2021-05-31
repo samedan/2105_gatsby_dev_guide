@@ -4,6 +4,8 @@ date: "2021"
 subtitle: "Tutorial"
 jesus: "Was Here"
 slug: learn-gatsby-quick
+author: Popescu Daniel
+rating: 1
 ---
 
 # h1 Heading 8-)

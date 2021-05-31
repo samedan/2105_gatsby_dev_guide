@@ -1,12 +1,14 @@
 import React from "react";
-import Header from "./Header";
+import AppHeader from "./AppHeader";
+import Footer from "./Footer";
 
 function Layout(props) {
   return (
-    <>
-      <Header />
+    <div className="container is-max-desktop">
+      <AppHeader />
       {props.children}
-    </>
+      <Footer />
+    </div>
   );
 }
 
