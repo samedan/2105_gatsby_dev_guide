@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import FeaturedBlog from "../components/FeaturedBlog";
 import BlogListing from "../components/BlogListing";
 
