@@ -30,7 +30,7 @@ export default function FeaturedBlog({ blog }) {
           to={`/blogs/${slug}`}
           className="button is-light is-link is-small"
         >
-          Continue reading
+          Read more
         </Link>
       </div>
     </div>

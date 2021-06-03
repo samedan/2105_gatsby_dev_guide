@@ -1,9 +1,15 @@
 import React from "react";
 import Blog from "./Blog";
 
-export default function BlogListing({ blogs }) {
+export default function BlogListing({ blogs, search: Search }) {
   return (
     <>
+      {Search && (
+        <div className="mb-4">
+          <Search />
+        </div>
+      )}
+
       <div className="columns is-multiline">
         {blogs.map(({ frontmatter, id }) => (
           <div key={id} className="column is-9">

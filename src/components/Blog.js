@@ -22,7 +22,7 @@ export default function Blog({ title, date, subtitle, slug }) {
           className="button is-link is-light is-small"
           to={`/blogs/${slug}`}
         >
-          Continue reading
+          Read more
         </Link>
       </div>
     </>
