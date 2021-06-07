@@ -5,6 +5,7 @@ subtitle: "Learning to fill CV"
 slug: learn-program-js
 author: Popescu Daniel
 rating: 4
+coverImage: https://cdn.sanity.io/images/55mm68d3/production/75b7a4b0f15c0f32c3555c749df6d4b86cd9d79f-1000x666.jpg?h=600&fm=jpg&q=70
 ---
 
 # h1 Heading 8-)

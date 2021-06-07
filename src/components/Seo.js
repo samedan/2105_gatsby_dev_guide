@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-export default function Seo({ title, description, meta = [] }) {
+export default function Seo({ title, image, description, meta = [] }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,7 +20,9 @@ export default function Seo({ title, description, meta = [] }) {
     ? `${title} | ${site.siteMetadata?.title}`
     : site.siteMetadata?.title;
   const defaultDescription = description || site.siteMetadata?.description;
-
+  const defaultImage =
+    image ||
+    "https://cdn.sanity.io/images/55mm68d3/production/75b7a4b0f15c0f32c3555c749df6d4b86cd9d79f-1000x666.jpg?h=600&fm=jpg&q=70";
   // add og:url
   return (
     <Helmet
@@ -47,8 +49,7 @@ export default function Seo({ title, description, meta = [] }) {
         },
         {
           name: "og:image",
-          content:
-            "https://www.agence-adelanto.fr/images/web/adelanto/2104_barometre_marketing/image1.jpg",
+          content: defaultImage,
         },
         {
           name: "twitter:card",
@@ -68,8 +69,7 @@ export default function Seo({ title, description, meta = [] }) {
         },
         {
           name: "twitter:image",
-          content:
-            "https://www.agence-adelanto.fr/images/web/adelanto/2104_barometre_marketing/image1.jpg",
+          content: defaultImage,
         },
       ].concat(meta)}
     />

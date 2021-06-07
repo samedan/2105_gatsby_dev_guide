@@ -1,12 +1,22 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+const rss = require("./utils/rss-options");
+
 module.exports = {
   siteMetadata: {
     title: "Popescu Daniel",
     description: "Hire this man!",
+    siteUrl: process.env.BASE_URL,
     body: {
       content: "SEO Content",
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-feed",
+      options: rss.options,
+    },
     "gatsby-plugin-sass",
     {
       resolve: `gatsby-source-filesystem`,

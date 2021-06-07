@@ -6,6 +6,7 @@ jesus: "Was Here"
 slug: learn-gatsby-quick
 author: Popescu Daniel
 rating: 1
+coverImage: https://cdn.sanity.io/images/55mm68d3/production/4b05d1ccf39267278b8cbcc6c34f0c14bfcf2dda-1280x720.jpg?h=600&fm=jpg&q=70
 ---
 
 # h1 Heading 8-)
