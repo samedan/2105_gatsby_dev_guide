@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "Popescu Daniel",
+    description: "Hire this man!",
     body: {
       content: "SEO Content",
     },
@@ -29,6 +30,13 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    "gatsby-plugin-react-helmet",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/images/coding-icon-png.png",
       },
     },
   ],

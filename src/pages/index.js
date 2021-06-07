@@ -1,14 +1,16 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import FeaturedBlog from "../components/FeaturedBlog";
 import BlogListing from "../components/BlogListing";
 import SearchContainer from "../components/SearchContainer";
+import Seo from "../components/Seo";
 
 export default function IndexPage({ data, pageContext }) {
   const { nodes } = data.allMarkdownRemark;
   return (
     <Layout>
+      <Seo title="Home" description="Best platform to learn programming" />
       <div className="columns">
         {nodes.slice(0, 2).map((node) => (
           <div className="column" key={node.id}>
@@ -23,6 +25,9 @@ export default function IndexPage({ data, pageContext }) {
           )}
           blogs={nodes}
         />
+        <Link className="button is-primary is-outlined" to="/blogs">
+          View more entries
+        </Link>
       </div>
     </Layout>
   );

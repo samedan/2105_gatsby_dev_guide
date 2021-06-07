@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import { graphql, Link } from "gatsby";
 import BlogListing from "../components/BlogListing";
+import Seo from "../components/Seo";
 
 export default function BlogsPaginated({ pageContext, data }) {
   const { currentPage, numOfPages } = pageContext;
@@ -15,21 +16,15 @@ export default function BlogsPaginated({ pageContext, data }) {
 
   return (
     <Layout>
+      <Seo
+        title="Latest posts"
+        description="Fresh codespace blogs about technology"
+      />
       <BlogListing blogs={nodes} />
-      {/* {!isFirstPage && (
-        <Link className="button is-small" to={`/blogs/${prevPage}`} rel="prev">
-          Previous
-        </Link>
-      )}{" "}
-      {!isLastPage && (
-        <Link className="button is-small" to={`/blogs/${nextPage}`} rel="next">
-          Next
-        </Link>
-      )} */}
-
+      <hr />
       <Link
         disabled={isFirstPage}
-        className="button is-small"
+        className="button is-small is-primary"
         to={`/blogs/${prevPage}`}
         rel="prev"
       >
@@ -37,7 +32,7 @@ export default function BlogsPaginated({ pageContext, data }) {
       </Link>
       <Link
         disabled={isLastPage}
-        className="button is-small"
+        className="button is-small is-primary"
         to={`/blogs/${nextPage}`}
         rel="next"
       >
