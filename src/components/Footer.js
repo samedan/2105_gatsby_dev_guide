@@ -26,7 +26,7 @@ export default function Footer(props) {
             <a
               rel="noreferrer"
               target="_blank"
-              href={`https://www.feedspot.com/infiniterss.php?=site:${process.env.BASE_URL}/rss.xml`}
+              href={`https://www.feedspot.com/infiniterss.php?q=site:${process.env.BASE_URL}/rss.xml`}
             >
               RSS feed
             </a>

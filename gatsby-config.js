@@ -49,5 +49,18 @@ module.exports = {
         icon: "src/images/coding-icon-png.png",
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Dev Blog Popescu Daniel`,
+        short_name: `Dev Blog`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: "src/images/coding-icon-png.png",
+      },
+    },
+    "gatsby-plugin-offline",
   ],
 };
