@@ -7,11 +7,18 @@ import Seo from "../components/Seo";
 export default function Blog({ data }) {
   const {
     html,
-    frontmatter: { title, subtitle, coverImage },
+    frontmatter: { title, subtitle, coverImage, slug },
   } = data.markdownRemark;
+
+  const seo = {
+    title,
+    subtitle,
+    image: coverImage,
+    url: `/blogs/${slug}`,
+  };
   return (
-    <Layout>
-      <Seo title={title} description={subtitle} image={coverImage} />
+    <Layout seo={seo}>
+      <Seo {...seo} />
 
       <h1>{title}</h1>
       <div className="blog-content">
@@ -29,6 +36,7 @@ export const query = graphql`
         title
         subtitle
         coverImage
+        slug
       }
     }
   }

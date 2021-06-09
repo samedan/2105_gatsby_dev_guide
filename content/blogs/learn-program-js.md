@@ -10,6 +10,8 @@ coverImage: https://cdn.sanity.io/images/55mm68d3/production/75b7a4b0f15c0f32c35
 
 # h1 Heading 8-)
 
+![alt text](https://cdn.sanity.io/images/55mm68d3/production/75b7a4b0f15c0f32c3555c749df6d4b86cd9d79f-1000x666.jpg?h=600&fm=jpg&q=70 "Logo Title Text 1")
+
 ## h2 Heading
 
 ### h3 Heading
