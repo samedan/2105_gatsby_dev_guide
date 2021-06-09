@@ -3,12 +3,11 @@ require("dotenv").config({
 });
 const rss = require("./utils/rss-options");
 
-console.log(process.env.BASE_URL);
 module.exports = {
   siteMetadata: {
     title: "Popescu Daniel",
     description: "Hire this man!",
-    siteUrl: process.env.BASE_URL,
+    siteUrl: process.env.BASE_URL || `https://devblogpopescu.gatsbyjs.io`,
     body: {
       content: "SEO Content",
     },
