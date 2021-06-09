@@ -3,6 +3,7 @@ require("dotenv").config({
 });
 const rss = require("./utils/rss-options");
 
+console.log(process.env.BASE_URL);
 module.exports = {
   siteMetadata: {
     title: "Popescu Daniel",
@@ -13,12 +14,12 @@ module.exports = {
     },
   },
   plugins: [
-    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-feed",
       options: rss.options,
     },
     "gatsby-plugin-sass",
+    "gatsby-plugin-sitemap",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
