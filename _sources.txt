@@ -7,3 +7,4 @@ https://www.udemy.com/course/gatsby-js-developers-guide-important-parts-blog-app
 > bulma
 > gatsby
 > 
+
